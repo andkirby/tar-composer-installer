@@ -3,7 +3,9 @@
   "type": "composer-plugin",
   "license": "MIT",
   "autoload": {
-    "psr-0": {"AndKirby": "src/AndKirby/"}
+    "psr-0": {
+      "AndKirby\\Composer": "src/"
+    }
   },
   "extra": {
     "class": "AndKirby\\Composer\\Plugin\\TarInstallerPlugin"
