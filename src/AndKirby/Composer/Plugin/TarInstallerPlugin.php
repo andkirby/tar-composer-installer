@@ -1,6 +1,7 @@
 <?php
 namespace AndKirby\Composer\Plugin;
 
+use AndKirby\Composer\Downloader\TarDownloader;
 use AndKirby\Composer\Installer\TarInstaller;
 use Composer\Composer;
 use Composer\IO\IOInterface;
@@ -10,7 +11,24 @@ class TarInstallerPlugin implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
+        $this->_registerTarCliDownloader($composer, $io);
+
+        //register installer
         $installer = new TarInstaller($io, $composer);
         $composer->getInstallationManager()->addInstaller($installer);
+    }
+
+    /**
+     * Register TAR CLI Downloader
+     *
+     * @param Composer $composer
+     * @param IOInterface $io
+     * @return $this
+     */
+    protected function _registerTarCliDownloader(Composer $composer, IOInterface $io)
+    {
+        $composer->getDownloadManager()
+            ->setDownloader('tar-cli', new TarDownloader($io, $composer->getConfig()));
+        return $this;
     }
 }
