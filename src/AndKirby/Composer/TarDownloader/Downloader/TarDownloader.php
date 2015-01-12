@@ -1,5 +1,5 @@
 <?php
-namespace AndKirby\Composer\Downloader;
+namespace AndKirby\Composer\TarDownloader\Downloader;
 
 use Composer\Downloader\FilesystemException;
 use Composer\Downloader\TarDownloader as ComposerTarDownloader;

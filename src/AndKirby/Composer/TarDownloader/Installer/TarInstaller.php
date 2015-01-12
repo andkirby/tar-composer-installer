@@ -1,7 +1,8 @@
 <?php
-namespace AndKirby\Composer\Installer;
+namespace AndKirby\Composer\TarDownloader\Installer;
 
 use Composer\Installer\LibraryInstaller;
+use Composer\Installer\ProjectInstaller;
 use Composer\Package\PackageInterface;
 
 class TarInstaller extends LibraryInstaller
@@ -11,8 +12,8 @@ class TarInstaller extends LibraryInstaller
      */
     public function getPackageBasePath(PackageInterface $package)
     {
-        $prefix = substr($package->getPrettyName(), 0, 23);
-        if ('some/template-' !== $prefix) {
+        return parent::getPackageBasePath($package);
+        if (0 !== strpos($package->getPrettyName(), 'onepica/opal-')) {
             throw new \InvalidArgumentException(
                 'Unable to install template, some templates '
                 .'should always start their package name with '
@@ -20,7 +21,8 @@ class TarInstaller extends LibraryInstaller
             );
         }
 
-        return 'data/templates/'.substr($package->getPrettyName(), 23);
+        $this->initializeVendorDir();
+        return ($this->vendorDir ? $this->vendorDir.'/' : '') . 'onepica/opal';
     }
 
     /**
@@ -28,6 +30,6 @@ class TarInstaller extends LibraryInstaller
      */
     public function supports($packageType)
     {
-        return 'some-template' === $packageType;
+        return 'magento-module' === $packageType || 'package' === $packageType;
     }
 }

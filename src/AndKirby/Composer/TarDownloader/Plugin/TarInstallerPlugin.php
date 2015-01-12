@@ -1,8 +1,8 @@
 <?php
-namespace AndKirby\Composer\Plugin;
+namespace AndKirby\Composer\TarDownloader\Plugin;
 
-use AndKirby\Composer\Downloader\TarDownloader;
-use AndKirby\Composer\Installer\TarInstaller;
+use AndKirby\Composer\TarDownloader\Downloader\TarDownloader;
+use AndKirby\Composer\TarDownloader\Installer\TarInstaller;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
