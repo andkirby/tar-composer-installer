@@ -9,13 +9,15 @@ use Composer\Plugin\PluginInterface;
 
 class TarInstallerPlugin implements PluginInterface
 {
+    /**
+     * Replace tar archive downloader
+     *
+     * @param Composer $composer
+     * @param IOInterface $io
+     */
     public function activate(Composer $composer, IOInterface $io)
     {
         $this->_registerTarCliDownloader($composer, $io);
-
-        //register installer
-        $installer = new TarInstaller($io, $composer);
-        $composer->getInstallationManager()->addInstaller($installer);
     }
 
     /**
@@ -28,7 +30,7 @@ class TarInstallerPlugin implements PluginInterface
     protected function _registerTarCliDownloader(Composer $composer, IOInterface $io)
     {
         $composer->getDownloadManager()
-            ->setDownloader('tar-cli', new TarDownloader($io, $composer->getConfig()));
+            ->setDownloader(TarDownloader::ARCHIVE_CODE, new TarDownloader($io, $composer->getConfig()));
         return $this;
     }
 }

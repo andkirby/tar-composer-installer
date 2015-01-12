@@ -13,6 +13,11 @@ use Composer\Downloader\TarDownloader as ComposerTarDownloader;
 class TarDownloader extends ComposerTarDownloader
 {
     /**
+     * Archive code
+     */
+    const ARCHIVE_CODE = 'tar';
+
+    /**
      * {@inheritDoc}
      */
     protected function extract($file, $path)
