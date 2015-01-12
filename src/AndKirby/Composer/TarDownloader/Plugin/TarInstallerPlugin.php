@@ -2,7 +2,6 @@
 namespace AndKirby\Composer\TarDownloader\Plugin;
 
 use AndKirby\Composer\TarDownloader\Downloader\TarDownloader;
-use AndKirby\Composer\TarDownloader\Installer\TarInstaller;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
